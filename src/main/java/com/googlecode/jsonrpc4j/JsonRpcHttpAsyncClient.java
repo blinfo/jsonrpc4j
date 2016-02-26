@@ -407,25 +407,25 @@ public class JsonRpcHttpAsyncClient {
 		if (arguments != null && arguments.getClass().isArray()) {
 			Object[] args = Object[].class.cast(arguments);
 			if (args.length > 0) {
-				request.set("params",
+				request.set("data",
 						mapper.valueToTree(Object[].class.cast(arguments)));
 			}
 
 			// collection args
 		} else if (arguments != null && Collection.class.isInstance(arguments)) {
 			if (!Collection.class.cast(arguments).isEmpty()) {
-				request.set("params", mapper.valueToTree(arguments));
+				request.set("data", mapper.valueToTree(arguments));
 			}
 
 			// map args
 		} else if (arguments != null && Map.class.isInstance(arguments)) {
 			if (!Map.class.cast(arguments).isEmpty()) {
-				request.set("params", mapper.valueToTree(arguments));
+				request.set("data", mapper.valueToTree(arguments));
 			}
 
 			// other args
 		} else if (arguments != null) {
-			request.set("params", mapper.valueToTree(arguments));
+			request.set("data", mapper.valueToTree(arguments));
 		}
 
 		if (LOGGER.isLoggable(Level.FINE)) {
@@ -491,11 +491,11 @@ public class JsonRpcHttpAsyncClient {
 		}
 
 		// convert it to a return object
-		if (jsonObject.has("result") && !jsonObject.get("result").isNull()
-				&& jsonObject.get("result") != null) {
+		if (jsonObject.has("data") && !jsonObject.get("data").isNull()
+				&& jsonObject.get("data") != null) {
 
 			JsonParser returnJsonParser = mapper.treeAsTokens(jsonObject
-					.get("result"));
+					.get("data"));
 			JavaType returnJavaType = TypeFactory.defaultInstance()
 					.constructType(returnType);
 

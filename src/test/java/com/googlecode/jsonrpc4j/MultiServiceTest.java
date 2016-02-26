@@ -32,7 +32,7 @@ public class MultiServiceTest {
 		String response = baos.toString(JSON_ENCODING);
 		JsonNode json = new ObjectMapper().readTree(response);
 		
-		assertEquals("success", json.get("result").textValue());
+		assertEquals("success", json.get("data").textValue());
 	}
 
 	private interface ServiceInterfaceWithParamNameAnnotaion {        

@@ -44,11 +44,11 @@ public class JsonRpcClientTest {
 		
 		client.invoke("test", new Object[0], baos);
 		JsonNode node = readJSON(baos);
-		assertFalse(node.has("params"));
+		assertFalse(node.has("data"));
 
 		client.invoke("test", (Object[])null, baos);
 		node = readJSON(baos);
-		assertFalse(node.has("params"));
+		assertFalse(node.has("data"));
 	}
 
 	@Test
@@ -57,10 +57,10 @@ public class JsonRpcClientTest {
 		client.invoke("test", new Object[] { 1, 2 }, baos);
 		JsonNode node = readJSON(baos);
 
-		assertTrue(node.has("params"));
-		assertTrue(node.get("params").isArray());
-		assertEquals(1, node.get("params").get(0).intValue());
-		assertEquals(2, node.get("params").get(1).intValue());
+		assertTrue(node.has("data"));
+		assertTrue(node.get("data").isArray());
+		assertEquals(1, node.get("data").get(0).intValue());
+		assertEquals(2, node.get("data").get(1).intValue());
 	}
 
 	@Test
@@ -72,10 +72,10 @@ public class JsonRpcClientTest {
 		client.invoke("test", params, baos);
 		JsonNode node = readJSON(baos);
 
-		assertTrue(node.has("params"));
-		assertTrue(node.get("params").isObject());
-		assertEquals("Guvna", node.get("params").get("hello").textValue());
-		assertEquals(1, node.get("params").get("x").intValue());
+		assertTrue(node.has("data"));
+		assertTrue(node.get("data").isObject());
+		assertEquals("Guvna", node.get("data").get("hello").textValue());
+		assertEquals(1, node.get("data").get("x").intValue());
 	}
 
 }

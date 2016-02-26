@@ -309,7 +309,7 @@ public class JsonRpcBasicServer {
 		JsonNode jsonPrcNode	= node.get("jsonrpc");
 		JsonNode methodNode		= node.get("method");
 		JsonNode idNode 		= node.get("id");
-		JsonNode paramsNode		= node.get("params");
+		JsonNode paramsNode		= node.get("data");
 
 		// get node values
 		String jsonRpc		= (jsonPrcNode!=null && !jsonPrcNode.isNull()) ? jsonPrcNode.asText() : "2.0";
@@ -552,7 +552,7 @@ public class JsonRpcBasicServer {
 		} else {
 			response.put("id", String.class.cast(id));
 		}
-		response.set("result", result);
+		response.set("data", result);
 		return response;
 	}
 

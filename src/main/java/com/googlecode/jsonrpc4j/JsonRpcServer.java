@@ -122,7 +122,7 @@ public class JsonRpcServer extends JsonRpcBasicServer
 			input = createInputStream(
 				request.getParameter("method"),
 				request.getParameter("id"),
-				request.getParameter("params"));
+				request.getParameter("data"));
 
 		// invalid request
 		} else {
@@ -165,7 +165,7 @@ public class JsonRpcServer extends JsonRpcBasicServer
 			input = createInputStream(
 				request.getParameter("method"),
 				request.getParameter("id"),
-				request.getParameter("params"));
+				request.getParameter("data"));
 
 		// invalid request
 		} else {
