@@ -79,6 +79,10 @@ public class JsonRpcHttpClient
         this.headers.putAll(headers);
     }
     
+    public void setSessionId(String sessionId){
+        this.headers.put("Token", sessionId);
+    }
+    
     public JsonRpcHttpClient(ObjectMapper mapper, URL serviceUrl, String sessionId) {
         super(mapper);
         this.serviceUrl = serviceUrl;
